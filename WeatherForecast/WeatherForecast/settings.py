@@ -120,5 +120,5 @@ STATIC_URL = '/static/'
 
 #设置静态文件夹目录的路径
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'TemPre' , 'static'),
+    os.path.join(BASE_DIR, 'static'),
 )
