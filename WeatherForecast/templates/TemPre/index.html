@@ -3,6 +3,10 @@
 {% block title %}主页{% endblock %}
 {% block link %}
     <link href="{% static 'TemPre/css/index.css' %}" rel="stylesheet">
+    <script src="{% static 'echarts/echarts.min.js' %}"></script>
+    <script src="{% static 'TemPre/js/echartsTheme.js' %}"></script>
+    <script src="{% static 'TemPre/js/processData.js' %}"></script>
+    <script src="{% static 'TemPre/js/dateSelect.js' %}"></script>
 {% endblock %}
 {% block content %}
     <div class="content">
@@ -16,12 +20,21 @@
             </div>
             <div class="tmpPre">
                 <p class="itemTitle">最近7天气温</p>
+                <div id="latestSevenDaysPic" style="width: 100%;height: 300px;padding-top: 50px;"></div>
             </div>
             <div class="tips">
                 <p class="itemTitle">生活小贴士</p>
             </div>
             <div class="pastWeather">
                 <p class="itemTitle">历史天气</p>
+                <div class="dateSelect">
+                    <p style="font-weight: bold;">
+                        <label>日期选择：</label>
+                        <select id="sel_year"></select>年
+                        <select id="sel_month"></select>月
+                    </p>
+                </div>
+                <div id="historyPic" style="width: 100%;height: 400px;text-align: center;position: absolute;top: 50px"></div>
             </div>
             <div class="block"></div>
         </div>

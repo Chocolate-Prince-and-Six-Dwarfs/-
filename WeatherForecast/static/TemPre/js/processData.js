@@ -1,7 +1,7 @@
 $(document).ready(function () {
     initSelect("sel_year", "sel_month");
-    drawHistoryPic(new Date().getFullYear(), new Date().getMonth() + 1);
     onchangeSelect("sel_year", "sel_month");
+    drawHistoryPic(new Date().getFullYear(), new Date().getMonth() + 1);
     drawLatestSevenDaysPic(new Date().getFullYear(), new Date().getMonth() + 1);
 });
 
@@ -25,7 +25,7 @@ function drawLatestSevenDaysPic(year, month) {
             myChart.hideLoading();
             myChart.setOption({
                 title: {
-                    text: "最近7天气温状况",
+                    text: "",
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -71,6 +71,9 @@ function drawLatestSevenDaysPic(year, month) {
             });
         });
     });
+    window.addEventListener("resize",function (){
+        myChart.resize();
+    });
 }
 
 function drawHistoryPic(year, month) {
@@ -104,5 +107,8 @@ function drawHistoryPic(year, month) {
                 data: [max, min, Number(data['avgbWendu']), Number(data['avgyWendu'])],
             }]
         });
+    });
+    window.addEventListener("resize",function (){
+        myChart.resize();
     });
 }
