@@ -1,7 +1,82 @@
-h1{
-    text-align: center;
+.content {
+    width: 100%;
+    height: auto;
 }
-p{
-    padding-left: 2em;
-    color: red;
+
+.top {
+    width: 100%;
+    height: 60px;
+    background-image: linear-gradient(rgb(65, 105, 225), rgb(100,150,240));
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+.title {
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 350px;
+}
+.location {
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 1100px;
+}
+
+.middle {
+    width: 100%;
+    height: 900px;
+    background-image: linear-gradient(rgb(100,150,240), rgb(245, 245, 245));
+}
+.block {
+    width: 100%;
+    height: 20px;
+}
+.itemTitle {
+    font-size: 16px;
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.todayWeather {
+    width: 800px;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 12px;
+    box-shadow: 0 0 14px 0 rgba(0,0,0,.08);
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 350px;
+}
+.pastWeather {
+    width: 500px;
+    height: 500px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 12px;
+    box-shadow: 0 0 14px 0 rgba(0,0,0,.08);
+    position: absolute;
+    margin-top: 340px;
+    margin-left: 350px;
+}
+.temPre {
+    width: 280px;
+    height: 500px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 12px;
+    box-shadow: 0 0 14px 0 rgba(0,0,0,.08);
+    position: absolute;
+    margin-top: 340px;
+    margin-left: 870px;
+}
+
+.bottom {
+    width: 100%;
+    height: 80px;
+    background-color: rgb(0, 0, 128);
+}
+.message {
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    text-align: center;
 }
