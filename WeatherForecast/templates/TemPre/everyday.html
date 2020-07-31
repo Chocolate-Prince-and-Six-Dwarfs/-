@@ -1,0 +1,12 @@
+{% extends 'TemPre/base.html' %}
+{% load static %}
+{% block title %}每日天气数据{% endblock %}
+{% block link %}
+    <script src="{% static 'echarts/echarts.min.js' %}"></script>
+    <script src="{% static 'TemPre/js/today.js' %}"></script>
+{% endblock %}
+{% block content %}
+    <div id="todayWeather" style="width: 600px;height:200px;">
+
+    </div>
+{% endblock %}
