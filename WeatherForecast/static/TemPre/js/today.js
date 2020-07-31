@@ -2,7 +2,7 @@ $(document).ready(function(){
     drawTodayPic();
 });
 function drawTodayPic(){
-    var myChart = echarts.init(document.getElementById('todayWeather'));
+    var myChart = echarts.init(document.getElementById('todayweather'));
     myChart.showLoading();
     // 异步加载数据
     console.log('123');
@@ -37,7 +37,10 @@ function drawTodayPic(){
                 '2:00\n',
                 '5:00\n'],
             },
-            yAxis: {},
+            yAxis: {
+                show: false,
+                splitLine: {show : false},
+            },
             series: [{
                 name: '温度',
                 type: 'line',
