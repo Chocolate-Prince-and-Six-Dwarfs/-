@@ -36,6 +36,8 @@ function drawTodayPic(){
                 '23:00\n',
                 '2:00\n',
                 '5:00\n'],
+                axisTick: { show: false },
+                splitLine: {show : true},
             },
             yAxis: {
                 show: false,
@@ -46,6 +48,7 @@ function drawTodayPic(){
                 type: 'line',
                 data: [tem8,tem11,tem14,tem17,tem20,tem23,tem2,tem5],
                 itemStyle : { normal: {label : {show: true}}},
+                color: '#FFB90F'
             }]
         });
     });

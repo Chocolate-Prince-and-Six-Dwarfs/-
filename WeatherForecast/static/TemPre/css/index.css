@@ -1,5 +1,5 @@
 .content {
-    width: 100%;
+    width: 100vw;
     height: auto;
 }
 
@@ -64,11 +64,12 @@
 }
 .pastWeather {
     width: 64%;
-    height: 400px;
+    height: 450px;
     background-color: rgb(255, 255, 255);
     border-radius: 12px;
     margin-top: 390px;
     margin-left: 18%;
+    position: relative;
 }
 .block {
     width: 100%;
@@ -86,4 +87,14 @@
     color: rgb(255, 255, 255);
     text-align: center;
     margin-bottom: 0;
+}
+
+select{
+    width: 5em;
+}
+
+.dateSelect{
+    position: absolute;
+    right: 20px;
+    margin-top: 10px;
 }

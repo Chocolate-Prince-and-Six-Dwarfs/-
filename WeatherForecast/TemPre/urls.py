@@ -7,9 +7,7 @@ from . import today_data_interface
 app_name="TemPre"
 urlpatterns=[
     path('',views.index,name='index'),
-    path('forecast',views.weatherForecastSevenDays,name='forecast'),
     path(r'getMonthlyData/', data_interface.getMonthlyData, name="获取月数据"),
     path(r'predict/', data_interface.predict, name="预测温度"),
-    path('everyday',views.weatherForecastEveryDay,name='everyday'),
     path(r'getTodayData/', today_data_interface.getTodayData , name="获取今日数据"),
 ]

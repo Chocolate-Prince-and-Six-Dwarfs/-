@@ -6,7 +6,3 @@ def index(request):
 
 def weatherForecastSevenDays(request):
     return render(request,'TemPre/weather.html')
-
-def weatherForecastEveryDay(request):
-
-    return render(request, 'TemPre/everyday.html')
