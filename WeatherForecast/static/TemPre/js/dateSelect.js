@@ -11,7 +11,6 @@ function initSelect(sel_year, sel_month){
     $("#"+sel_year).append(year_list);
 
     var m = new Date().getMonth() + 1;
-    console.log(m)
     var month_list = "";
     for(var i=1; i<=12; i++){
         if(i == m){
