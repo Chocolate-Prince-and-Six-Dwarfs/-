@@ -1,9 +1,21 @@
 {% extends 'TemPre/base.html' %}
 {% load static %}
-{% block title %}未来七天天气预测{% endblock %}
+{% block title %}历史天气数据{% endblock %}
 {% block link %}
-    
+    <link href="{% static 'TemPre/css/weather.css' %}" rel="stylesheet">
+    <script src="{% static 'echarts/echarts.min.js' %}"></script>
+    <script src="{% static 'TemPre/js/processData.js' %}"></script>
+    <script src="{% static 'TemPre/js/dateSelect.js' %}"></script>
 {% endblock %}
 {% block content %}
-    <p>这里是index的子内容(weather.html)</p>
+    <div class="dateSelect">
+        <p style="font-weight: bold;">
+            <label>日期选择：</label>
+            <select id="sel_year"></select>年
+            <select id="sel_month"></select>月
+        </p>
+    </div>
+    <div id="pic1" style="width: 600px;height:400px;">
+
+    </div>
 {% endblock %}
