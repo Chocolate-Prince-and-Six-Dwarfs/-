@@ -45,7 +45,7 @@ def predict(request):
     # 训练数据
     x_train = []
     y_train = []
-    for i in range(2500):
+    for _ in range(2800):
         temp_i = np.random.choice(list(range(len(data[0]) - batch)))
         x_train.append(data[0][temp_i:temp_i+batch-1])
         y_train.append(data[0][temp_i+batch-1])
