@@ -5,4 +5,5 @@ from . import views
 app_name="TemPre"
 urlpatterns=[
     path('',views.index,name='index'),
+    path('forecast',views.weatherForecastSevenDays,name='forecast'),
 ]
