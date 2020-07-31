@@ -8,4 +8,5 @@ urlpatterns=[
     path('',views.index,name='index'),
     path('forecast',views.weatherForecastSevenDays,name='forecast'),
     path(r'getMonthlyData/', data_interface.getMonthlyData, name="获取月数据"),
+    path(r'predict/', data_interface.predict, name="预测温度"),
 ]
