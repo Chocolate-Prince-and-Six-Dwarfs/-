@@ -185,19 +185,14 @@ function drawLatestSevenDaysPic(month, date, max, min) {
                         normal: {
                             label: {
                                 show: true, position: 'bottom', formatter: function (data) {
-                                    if (data.dataIndex == 6) {
-                                        data.value = data.value + "\u2103(预测值)";
-                                    } else {
-                                        data.value = data.value + "\u2103";
-                                    }
-                                    return data.value;
+                                    return data.value + "\u2103";
                                 }
                             }
                         }
                     },
                     name: '最低温度',
                     type: 'line',
-                    data: [min[0], min[1], min[2], min[3], min[4], min[5], predictValue],
+                    data: [min[0], min[1], min[2], min[3], min[4], min[5]],
                 },
                 {
                     itemStyle: {
