@@ -116,13 +116,39 @@ function drawLatestSevenDaysPic(month, date, max, min){
             },
             series: [
                 {
-                    itemStyle: { normal: { label: { show: true, position: 'bottom' } } },
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: true, position: 'bottom', formatter: function(data){
+                                    if(data.dataIndex == 6){
+                                        data.value = data.value+"\u2103(预测值)"
+                                    } else {
+                                        data.value = data.value+"\u2103"
+                                    }
+                                    return data.value;
+                                }
+                            }
+                        }
+                    },
                     name: '最低温度',
                     type: 'line',
                     data: [min[0], min[1], min[2], min[3], min[4], min[5], predictValue],
                 },
                 {
-                    itemStyle: { normal: { label: { show: true } } },
+                    itemStyle: { 
+                        normal: {
+                            label: {
+                                show: true, formatter: function(data){
+                                    if(data.dataIndex == 6){
+                                        data.value = data.value+"\u2103(预测值)"
+                                    } else {
+                                        data.value = data.value+"\u2103"
+                                    }
+                                    return data.value;
+                                }
+                            } 
+                        } 
+                    },
                     name: '最高温度',
                     type: 'line',
                     data: [max[0], max[1], max[2], max[3], max[4], max[5], predictValue],
