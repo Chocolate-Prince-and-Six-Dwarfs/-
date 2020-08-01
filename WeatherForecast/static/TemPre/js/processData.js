@@ -14,18 +14,18 @@ function processLatestSevenDaysData(year, month) {
         var max = new Array();
         var min = new Array();
         if (weatherData.length < 6 && weatherData.length > 0) {
-            $.get('getMonthlyData/?year=' + year + '&month=' + (month-1)).done(function (lastMonthData) {
-                var dateData = JSON.parse(JSON.stringify(lastMonthData.data).replace(']','') + ',' + JSON.stringify(weatherData).replace('[',''))
-                processThisMonthAndLastMonth(month, date, max, min, dateData)
+            $.get('getMonthlyData/?year=' + year + '&month=' + (month - 1)).done(function (lastMonthData) {
+                var dateData = JSON.parse(JSON.stringify(lastMonthData.data).replace(']', '') + ',' + JSON.stringify(weatherData).replace('[', ''));
+                processThisMonthAndLastMonth(month, date, max, min, dateData);
             });
-        } else if(weatherData.length >= 6) {
-            processThisMonthAndLastMonth(month, date, max, min, weatherData)
-        } else if(weatherData.length == 0){
-            $.get('getMonthlyData/?year=' + year + '&month=' + (month-1)).done(function (lastMonthData) {
-                processThisMonthAndLastMonth(month, date, max, min, lastMonthData.data)
+        } else if (weatherData.length >= 6) {
+            processThisMonthAndLastMonth(month, date, max, min, weatherData);
+        } else if (weatherData.length == 0) {
+            $.get('getMonthlyData/?year=' + year + '&month=' + (month - 1)).done(function (lastMonthData) {
+                processThisMonthAndLastMonth(month, date, max, min, lastMonthData.data);
             });
-        } else{
-            return
+        } else {
+            return;
         }
     });
 }
@@ -35,31 +35,91 @@ function drawHistoryPic(year, month) {
     myChart.showLoading();
     // 异步加载数据
     $.get('getMonthlyData/?year=' + year + '&month=' + month).done(function (data) {
-        var t = "月份:" + year + "-" + month + " 城市:" + data.city;
-        max = Number(data["maxWendu"].split("（")[0]);
-        maxDate = data["maxWendu"].split("（")[1].split("）")[0];
-        min = Number(data["minWendu"].split("（")[0]);
-        minDate = data["minWendu"].split("（")[1].split("）")[0];
-
+        console.log(data.data);
+        var historyData = data.data;
+        var dateList = new Array(historyData.length);
+        var maxList = new Array(historyData.length);
+        var minList = new Array(historyData.length);
+        for (var i = 0; i < historyData.length; i++) {
+            dateList[i] = historyData[i].ymd.replace('2020-', '');
+            maxList[i] = historyData[i].bWendu.replace('\u2103', '');
+            minList[i] = historyData[i].yWendu.replace('\u2103', '');
+        }
         myChart.hideLoading();
         myChart.setOption({
             title: {
-                text: t,
-            },
-            tooltip: {},
-            legend: {
-                data: ['温度'],
+                text: '',
+                subtext: '数据来源',
             },
             xAxis: {
-                data: ['最高温度\n' + maxDate, '最低温度\n' + minDate, '白天平均温度', '夜晚平均温度'],
+                data: dateList,
+                axisTick: {
+                    show: false,
+                },
+                axisLine: {
+                    show: false,
+                },
+                z: 10,
             },
-            yAxis: {},
-            series: [{
-                name: '温度',
-                type: 'bar',
-                barWidth: 30,
-                data: [max, min, Number(data['avgbWendu']), Number(data['avgyWendu'])],
-            }]
+            yAxis: {
+                axisLine: {
+                    show: false,
+                },
+                axisTick: {
+                    show: false,
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#999',
+                    }
+                }
+            },
+            dataZoom: [
+                {
+                    type: 'slider',
+                    show: true,
+                    start: 0,
+                    end: 15,
+                    minSpan: 15,
+                    maxSpan: 25,
+                }
+            ],
+            series: [
+                {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: true, position: 'top', formatter: function (data) {
+                                    data.value = data.value + "\u2103";
+                                    return data.value;
+                                }
+                            }
+                        }
+                    },
+                    type: 'bar',
+                    barGap: '-100%',
+                    barCategoryGap: '40%',
+                    data: maxList,
+                    animation: false
+                },
+                {
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: true, position: 'top', formatter: function (data) {
+                                    data.value = data.value + "\u2103";
+                                    return data.value;
+                                }
+                            }
+                        }
+                    },
+                    type: 'bar',
+                    barGap: '-100%',
+                    barCategoryGap: '40%',
+                    data: minList,
+                    animation: false
+                },
+            ]
         });
     });
     window.addEventListener("resize", function () {
@@ -67,17 +127,17 @@ function drawHistoryPic(year, month) {
     });
 }
 
-function processThisMonthAndLastMonth(month, date, max, min, weatherData){
+function processThisMonthAndLastMonth(month, date, max, min, weatherData) {
     for (var i = weatherData.length - 1; i >= weatherData.length - 6; i--) {
         var md = weatherData[i].ymd.split('-')[1] + "-" + weatherData[i].ymd.split('-')[2];
         date.unshift(md);
-        max.unshift(Number(weatherData[i].bWendu.split('℃')[0]));
-        min.unshift(Number(weatherData[i].yWendu.split('℃')[0]));
+        max.unshift(Number(weatherData[i].bWendu.split('\u2103')[0]));
+        min.unshift(Number(weatherData[i].yWendu.split('\u2103')[0]));
     }
     drawLatestSevenDaysPic(month, date, max, min);
 }
 
-function drawLatestSevenDaysPic(month, date, max, min){
+function drawLatestSevenDaysPic(month, date, max, min) {
     var myChart = echarts.init(document.getElementById('latestSevenDaysPic'), 'walden');
     myChart.showLoading();
     $.get('predict/').done(function (data) {
@@ -119,11 +179,11 @@ function drawLatestSevenDaysPic(month, date, max, min){
                     itemStyle: {
                         normal: {
                             label: {
-                                show: true, position: 'bottom', formatter: function(data){
-                                    if(data.dataIndex == 6){
-                                        data.value = data.value+"\u2103(预测值)"
+                                show: true, position: 'bottom', formatter: function (data) {
+                                    if (data.dataIndex == 6) {
+                                        data.value = data.value + "\u2103(预测值)";
                                     } else {
-                                        data.value = data.value+"\u2103"
+                                        data.value = data.value + "\u2103";
                                     }
                                     return data.value;
                                 }
@@ -135,19 +195,19 @@ function drawLatestSevenDaysPic(month, date, max, min){
                     data: [min[0], min[1], min[2], min[3], min[4], min[5], predictValue],
                 },
                 {
-                    itemStyle: { 
+                    itemStyle: {
                         normal: {
                             label: {
-                                show: true, formatter: function(data){
-                                    if(data.dataIndex == 6){
-                                        data.value = data.value+"\u2103(预测值)"
+                                show: true, formatter: function (data) {
+                                    if (data.dataIndex == 6) {
+                                        data.value = data.value + "\u2103(预测值)";
                                     } else {
-                                        data.value = data.value+"\u2103"
+                                        data.value = data.value + "\u2103";
                                     }
                                     return data.value;
                                 }
-                            } 
-                        } 
+                            }
+                        }
                     },
                     name: '最高温度',
                     type: 'line',

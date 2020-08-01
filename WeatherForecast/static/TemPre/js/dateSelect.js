@@ -27,7 +27,7 @@ function onchangeSelect(sel_year,sel_month){
         var yearSel = $("#" + sel_year).val();
         var monthSel = $("#" + sel_month).val();
         var nowYear = new Date().getFullYear();
-        var lastMonth = new Date().getMonth()
+        var lastMonth = new Date().getMonth();
         if(monthSel > lastMonth && yearSel >= nowYear){
             $("#" + sel_month).val(lastMonth);
             drawHistoryPic(yearSel, lastMonth);
