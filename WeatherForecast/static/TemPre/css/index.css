@@ -177,3 +177,26 @@ select{
     right: 20px;
     margin-top: 10px;
 }
+
+.itemTips{
+  width: 100%;
+}
+.itemTip{
+  width:40%;
+  height: auto;
+  float: left;
+  border-radius: 12px;
+  margin-top: 7%;
+  margin-left: 7%;
+  text-align:center;
+  background-color: #eeffff;
+  box-shadow: 3px 3px 5px #888888;
+}
+.itemTip img{
+  width:40%;
+  height:auto;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 10px;
+  font-size: 12px;
+}
