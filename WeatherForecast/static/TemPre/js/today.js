@@ -43,10 +43,19 @@ function drawTodayPic(){
                 splitLine: {show : false},
             },
             series: [{
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true, position: 'top', formatter: function (data) {
+                                data.value = data.value + "\u2103";
+                                return data.value;
+                            }
+                        }
+                    }
+                },
                 name: '温度',
                 type: 'line',
                 data: [tem8,tem11,tem14,tem17,tem20,tem23,tem2,tem5],
-                itemStyle : { normal: {label : {show: true}}},
                 color: '#FFB90F'
             }]
         });
