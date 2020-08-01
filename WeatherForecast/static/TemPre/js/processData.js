@@ -35,7 +35,7 @@ function drawHistoryPic(year, month) {
     myChart.showLoading();
     // 异步加载数据
     $.get('getMonthlyData/?year=' + year + '&month=' + month).done(function (data) {
-        console.log(data.data);
+        var t = "月份:" + year + "-" + month + " 城市:" + data.city;
         var historyData = data.data;
         var dateList = new Array(historyData.length);
         var maxList = new Array(historyData.length);
@@ -48,8 +48,11 @@ function drawHistoryPic(year, month) {
         myChart.hideLoading();
         myChart.setOption({
             title: {
-                text: '',
+                text: t,
                 subtext: '数据来源',
+            },
+            legend: {
+                data: ['最高温度', '最低温度'],
             },
             xAxis: {
                 data: dateList,
@@ -96,6 +99,7 @@ function drawHistoryPic(year, month) {
                             }
                         }
                     },
+                    name: '最高温度',
                     type: 'bar',
                     barGap: '-100%',
                     barCategoryGap: '40%',
@@ -113,6 +117,7 @@ function drawHistoryPic(year, month) {
                             }
                         }
                     },
+                    name: '最低温度',
                     type: 'bar',
                     barGap: '-100%',
                     barCategoryGap: '40%',
