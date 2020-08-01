@@ -7,16 +7,14 @@ function drawTodayPic(){
     // 异步加载数据
     $.get('getTodayData/').done(function (data) {
         tmp = data["data"];
-        tem8 = tmp[0]["hours"][0]["tem"].split("℃")[0];
-        tem11 = tmp[0]["hours"][1]["tem"].split("℃")[0];
-        tem14 = tmp[0]["hours"][2]["tem"].split("℃")[0];
-        tem17 = tmp[0]["hours"][3]["tem"].split("℃")[0];
-        tem20 = tmp[0]["hours"][4]["tem"].split("℃")[0];
-        tem23 = tmp[0]["hours"][5]["tem"].split("℃")[0];
-        tem2 = tmp[0]["hours"][6]["tem"].split("℃")[0];
-        tem5 = tmp[0]["hours"][7]["tem"].split("℃")[0];
-
-
+        var temp = new Array();
+        var num = 0;
+        for(num = 0; tmp[0]["hours"][num]!=null;num++){
+            temp[num] = tmp[0]["hours"][num]["tem"].split("℃")[0];
+        }
+        for(var i = 0; i < 8 - num ;i++){
+            temp.unshift(0);
+        }
         myChart.hideLoading();
         myChart.setOption({
             title: {
@@ -55,7 +53,16 @@ function drawTodayPic(){
                 },
                 name: '温度',
                 type: 'line',
-                data: [tem8,tem11,tem14,tem17,tem20,tem23,tem2,tem5],
+                data: [
+                    temp[0],
+                    temp[1],
+                    temp[2],
+                    temp[3],
+                    temp[4],
+                    temp[5],
+                    temp[6],
+                    temp[7],
+                ],
                 color: '#FFB90F'
             }]
         });
