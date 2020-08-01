@@ -36,6 +36,85 @@
     margin-top: 5px;
     margin-left: 10px;
 }
+#ct-current .container{
+    width: 64%;
+    height: 300px;
+    background-color: rgba(255, 255, 255,0);
+    margin-top: 20px;
+    margin-left: 18%;
+    position: relative;
+}
+#publicDate{
+    font-size: 14px;
+    color: #fff;
+    opacity: .6;
+    height: 19px;
+    line-height: 19px;
+    margin-bottom: 20px;
+}
+#temText{
+    display: inline-block;
+    font-size: 86px;
+    color: #fff;
+    height: 86px;
+    line-height: 86px;
+}
+#nameText{
+    display: inline-block;
+    font-size: 28px;
+    color: #fff;
+    line-height: 45px;
+    height: 45px;
+    margin-right: 24px;
+}
+#weekText{
+    display: inline-block;
+    font-size: 24px;
+    color: #fff;
+    line-height: 45px;
+    height: 45px;
+    margin-right: 24px;
+}
+#ct-current #ct-other {
+    vertical-align: middle;
+    font-size: 0;
+    margin-bottom: 28px;
+}
+#ct-current #ct-other .Text {
+    display: inline-block;
+    margin-right: 42px;
+    color: #fff;
+    height: 20px;
+    line-height: 20px;
+    font-size: 0;
+}
+#ct-current #ct-other .txt {
+    display: inline-block;
+    font-size: 18px;
+    vertical-align: middle;
+}
+#ct-current #ct-tips {
+    letter-spacing: 0;
+}
+#ct-current #ct-tips #txt-tips {
+    vertical-align: middle;
+    font-size: 20px;
+    color: #fff;
+    line-height: 20px;
+    height: 20px;
+    display: inline-block;
+}
+#ct-image{
+    position: absolute;
+    top: 78px;
+    right: 80px;
+    width: 134px;
+    height: 134px;
+}
+#weaImg{
+    width:134px;
+    height: 134px;
+}
 .todayWeather {
     width: 64%;
     height: 300px;
