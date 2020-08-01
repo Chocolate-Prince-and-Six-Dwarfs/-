@@ -5,7 +5,6 @@ function drawTodayPic(){
     var myChart = echarts.init(document.getElementById('todayweather'));
     myChart.showLoading();
     // 异步加载数据
-    console.log('123');
     $.get('getTodayData/').done(function (data) {
         tmp = data["data"];
         tem8 = tmp[0]["hours"][0]["tem"].split("℃")[0];
@@ -51,5 +50,8 @@ function drawTodayPic(){
                 color: '#FFB90F'
             }]
         });
+    });
+    window.addEventListener("resize",function (){
+        myChart.resize();
     });
 }
