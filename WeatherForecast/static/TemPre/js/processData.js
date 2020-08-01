@@ -41,7 +41,7 @@ function drawHistoryPic(year, month) {
         var maxList = new Array(historyData.length);
         var minList = new Array(historyData.length);
         for (var i = 0; i < historyData.length; i++) {
-            dateList[i] = historyData[i].ymd.replace('2020-', '');
+            dateList[i] = historyData[i].ymd;
             maxList[i] = historyData[i].bWendu.replace('\u2103', '');
             minList[i] = historyData[i].yWendu.replace('\u2103', '');
         }
