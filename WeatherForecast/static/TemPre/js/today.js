@@ -8,12 +8,11 @@ function drawTodayPic(){
     $.get('getTodayData/').done(function (data) {
         tmp = data["data"];
         var temp = new Array();
+        var time = new Array();
         var num = 0;
         for(num = 0; tmp[0]["hours"][num]!=null;num++){
             temp[num] = tmp[0]["hours"][num]["tem"].split("℃")[0];
-        }
-        for(var i = 0; i < 8 - num ;i++){
-            temp.unshift(0);
+            time[num] = tmp[0]["hours"][num]["day"].split("日")[1].split("时")[0];
         }
         myChart.hideLoading();
         myChart.setOption({
@@ -25,14 +24,15 @@ function drawTodayPic(){
 
             },
             xAxis: {
-                data: ['8:00\n',
-                '11:00\n',
-                '14:00\n',
-                '17:00\n',
-                '20:00\n',
-                '23:00\n',
-                '2:00\n',
-                '5:00\n'],
+//                data: ['8:00\n',
+//                '11:00\n',
+//                '14:00\n',
+//                '17:00\n',
+//                '20:00\n',
+//                '23:00\n',
+//                '2:00\n',
+//                '5:00\n'],
+                data: time,
                 axisTick: { show: false },
                 splitLine: {show : true},
             },
@@ -53,16 +53,7 @@ function drawTodayPic(){
                 },
                 name: '温度',
                 type: 'line',
-                data: [
-                    temp[0],
-                    temp[1],
-                    temp[2],
-                    temp[3],
-                    temp[4],
-                    temp[5],
-                    temp[6],
-                    temp[7],
-                ],
+                data: temp,
                 color: '#FFB90F'
             }]
         });
