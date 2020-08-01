@@ -80,6 +80,10 @@ $.get('getTodayData/').done(function (data){
             wea_img = "../static/img/09.png";
             tip_text = "今天有大雨，出门记得带伞~"
             break;
+        case "阵雨":
+            wea_img = "../static/img/25.png";
+            tip_text = "今天有阵雨，出门记得带伞~"
+            break;
         case "雷阵雨":
             wea_img = "../static/img/05.png";
             tip_text = "今天有雷阵雨，出门记得带伞~"
