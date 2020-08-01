@@ -10,7 +10,7 @@ function initSelect(sel_year, sel_month){
     }
     $("#"+sel_year).append(year_list);
 
-    var m = new Date().getMonth() + 1;
+    var m = new Date().getMonth();
     var month_list = "";
     for(var i=1; i<=12; i++){
         if(i == m){
@@ -27,11 +27,11 @@ function onchangeSelect(sel_year,sel_month){
         var yearSel = $("#" + sel_year).val();
         var monthSel = $("#" + sel_month).val();
         var nowYear = new Date().getFullYear();
-        var nowMonth = new Date().getMonth() + 1
-        if(monthSel > nowMonth && yearSel >= nowYear){
-            $("#" + sel_month).val(nowMonth);
-            drawHistoryPic(yearSel,nowMonth);
-            alert('请选择当前月份之前的时间！')
+        var lastMonth = new Date().getMonth()
+        if(monthSel > lastMonth && yearSel >= nowYear){
+            $("#" + sel_month).val(lastMonth);
+            drawHistoryPic(yearSel, lastMonth);
+            alert('请选择上个月份（包含）之前的时间！')
         }else{
             drawHistoryPic(yearSel,monthSel);
         }
