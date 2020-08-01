@@ -42,7 +42,7 @@ def predict(request):
     batch = 15
     x = data[0][-(batch-1):]
 
-    # 训练数据
+    # 随机生成训练数据
     x_train = []
     y_train = []
     for _ in range(2800):
@@ -53,25 +53,13 @@ def predict(request):
     x_train = np.array(x_train)
     y_train = np.array(y_train)
 
+    # 形状拟合模型要求
     x = x.reshape(-1, batch-1)
     x_train = x_train.reshape(-1, batch-1)
 
-    # print(x_train.shape)
-    # print(y_train.shape)
-
-    # 归一化
-    # mms = preprocessing.MinMaxScaler()
-    # x = mms.fit_transform(x)
-    # x_train = mms.fit_transform(x_train)
-
     result = None
 
-    # 读取模型并预测
-    # with open(model_path, "rb") as f:
-    #     model = pickle.load(f)
-    #     model.fit(x_train, y_train)
-    #     result = model.predict(x)
-    #     return JsonResponse({"temp": np.rint(result[0])})
+    # 读取模型并训练、预测，若不存在则重新创建模型
     if os.path.isfile(model_path):
         with open(model_path, "rb") as f:
             model = pickle.load(f)
@@ -79,6 +67,8 @@ def predict(request):
         model = MLPRegressor(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(20,), activation="identity", random_state=1)
     model.fit(x_train, y_train)
     result = model.predict(x)
+
+    # 保存模型为二进制文件
     with open(model_path, "wb") as f:
         pickle.dump(model, f)
     return JsonResponse({"temp": int(np.rint(result[0]))})
